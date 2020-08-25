@@ -1,5 +1,5 @@
 % ThreeDdesign is an application that could turn sounds into realistic
-% spatialised sounds.
+% spatialized sounds.
 % It's using an reverb filter coupled to an HRTF filter
 %
 % Open source project - Created by Damien MARECHAL
