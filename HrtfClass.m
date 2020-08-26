@@ -10,14 +10,16 @@ classdef HrtfClass < handle
         lockUpdate = false;
     end
     methods
+		% Constructor taking the model
         function this = HrtfClass()
-            disp("init");
             load 'ReferenceHRTF.mat' hrtfData sourcePosition;
             this.ghrtfData = permute(double(hrtfData),[2,3,1]);
             this.srcPosition = sourcePosition(:,[1,2]);
         end
+		
         %void function only for update
         function update(this, newAz, newEz)
+		% BLock the update function in case the function is loaded too fast
             if (this.lockUpdate == false)
                 this.lockUpdate = true;
                 newAz = round(newAz);
@@ -35,6 +37,8 @@ classdef HrtfClass < handle
                 this.lockUpdate = false;
             end
         end
+		
+		% Process function
         function output = working(this,in)
             
             leftChannel = this.leftFilter(in(:,1));
